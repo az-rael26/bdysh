@@ -1,0 +1,62 @@
+/* H and S = Hearts and Stars. Decorative elements only; never block clicks. */
+.hns-background {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hns-particle {
+  position: absolute;
+  left: var(--particle-left);
+  bottom: -60px;
+  width: var(--particle-size);
+  height: var(--particle-size);
+  opacity: 0;
+  pointer-events: none;
+  animation: hns-float var(--particle-duration) linear forwards;
+  will-change: transform, opacity, filter;
+}
+
+/* A CSS-drawn heart: no emoji, no third-party image link. */
+.hns-heart-shape {
+  position: absolute;
+  top: 25%;
+  left: 15%;
+  width: 68%;
+  height: 68%;
+  transform: rotate(-45deg);
+  background: #C89CC9;
+  border-radius: 2px;
+}
+.hns-heart-shape::before,
+.hns-heart-shape::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: inherit;
+}
+.hns-heart-shape::before { top: -50%; left: 0; }
+.hns-heart-shape::after { top: 0; left: 50%; }
+
+/* Exact pixel-star artwork provided by the user, with its white background removed. */
+.hns-star-shape {
+  position: absolute;
+  inset: 0;
+  background: url('assets/pixel-star.png') center / contain no-repeat;
+  image-rendering: pixelated;
+}
+
+@keyframes hns-float {
+  0%   { transform: translate3d(0, 0, 0) rotate(-12deg); opacity: 0; filter: hue-rotate(0deg); }
+  14%  { opacity: .65; }
+  72%  { opacity: .55; }
+  100% { transform: translate3d(var(--particle-drift), -120vh, 0) rotate(var(--particle-spin)); opacity: 0; filter: hue-rotate(460deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hns-particle { animation: none; display: none; }
+}

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FDF1E2" />
+  <title>Letters for Your Birthday</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="h-and-s.css" />
+</head>
+<body>
+  <!-- H and S: decorative floating hearts and pixel stars behind the page. -->
+  <div class="hns-background" id="hns-background" aria-hidden="true"></div>
+
+  <main class="gallery-layout">
+    <header class="page-heading">
+      <span class="eyebrow">A LITTLE SOMETHING FOR YOU</span>
+      <h1>Letters &amp; Memories</h1>
+      <p>Pick a photo, then open its letter.</p>
+    </header>
+
+    <div class="gallery-stage">
+      <div class="image-container" aria-label="Eight-photo rotating memory gallery">
+        <!-- Replace these sample photo URLs with your own photos. -->
+      
+<span class="photo-slot" style="--i: 1">
+  <img src="photos/photo1.jpg" alt="Photo 1">
+</span>
+
+<span class="photo-slot" style="--i: 2">
+  <img src="photos/photo2.jpg" alt="Photo 2">
+</span>
+
+<span class="photo-slot" style="--i: 3">
+  <img src="photos/photo3.jpg" alt="Photo 3">
+</span>
+
+<span class="photo-slot" style="--i: 4">
+  <img src="photos/photo4.jpg" alt="Photo 4">
+</span>
+
+<span class="photo-slot" style="--i: 5">
+  <img src="photos/photo5.jpg" alt="Photo 5">
+</span>
+
+<span class="photo-slot" style="--i: 6">
+  <img src="photos/photo6.jpg" alt="Photo 6">
+</span>
+
+<span class="photo-slot" style="--i: 7">
+  <img src="photos/photo7.jpg" alt="Photo 7">
+</span>
+
+<span class="photo-slot" style="--i: 8">
+  <img src="photos/photo8.jpg" alt="Photo 8">
+</span>
+</div>
+    </div>
+
+    <div class="bottom-row">
+      <button class="arrow-btn" id="prev" type="button" aria-label="Previous photo">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 5 5 12l7 7M19 5l-7 7 7 7" />
+        </svg>
+      </button>
+
+      <button class="message-box" id="open-card" type="button" aria-haspopup="dialog" aria-controls="memory-modal">
+        <strong class="card-title" id="message-title">From: Name</strong>
+        <span class="card-description" id="message-text">Click to open this letter.</span>
+        <span class="card-hint">OPEN LETTER <span aria-hidden="true">↗</span></span>
+      </button>
+
+      <button class="arrow-btn" id="next" type="button" aria-label="Next photo">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m5 5 7 7-7 7m7-14 7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+  </main>
+
+  <!-- Full letter: enlarged photo on the left and birthday message on the right. -->
+  <div class="modal" id="memory-modal" hidden>
+    <div class="modal-backdrop" data-close-modal></div>
+    <section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-full-message">
+      <svg class="flower flower-top-left" viewBox="0 0 130 130" aria-hidden="true"><g fill="none" stroke="#88749D" stroke-width="2.4" stroke-linecap="round"><path d="M12 116Q51 67 75 38M38 88Q15 76 21 51Q45 55 48 76M60 52Q55 30 79 17Q90 41 72 54"/></g><g fill="#D6BDD9" stroke="#9478A7" stroke-width="1.2"><ellipse cx="89" cy="25" rx="11" ry="18" transform="rotate(15 89 25)"/><ellipse cx="110" cy="44" rx="11" ry="18" transform="rotate(80 110 44)"/><ellipse cx="95" cy="60" rx="11" ry="18" transform="rotate(140 95 60)"/><ellipse cx="72" cy="45" rx="11" ry="18" transform="rotate(-60 72 45)"/></g><circle cx="91" cy="43" r="8" fill="#F4DDBA"/><path d="M29 71Q15 64 16 45Q39 49 40 65" fill="#91AA89"/></svg>
+      <svg class="flower flower-bottom-right" viewBox="0 0 130 130" aria-hidden="true"><g fill="none" stroke="#88749D" stroke-width="2.4" stroke-linecap="round"><path d="M12 116Q51 67 75 38M38 88Q15 76 21 51Q45 55 48 76M60 52Q55 30 79 17Q90 41 72 54"/></g><g fill="#D6BDD9" stroke="#9478A7" stroke-width="1.2"><ellipse cx="89" cy="25" rx="11" ry="18" transform="rotate(15 89 25)"/><ellipse cx="110" cy="44" rx="11" ry="18" transform="rotate(80 110 44)"/><ellipse cx="95" cy="60" rx="11" ry="18" transform="rotate(140 95 60)"/><ellipse cx="72" cy="45" rx="11" ry="18" transform="rotate(-60 72 45)"/></g><circle cx="91" cy="43" r="8" fill="#F4DDBA"/><path d="M29 71Q15 64 16 45Q39 49 40 65" fill="#91AA89"/></svg>
+
+      <div class="modal-grid">
+        <div class="modal-photo-side">
+          <div class="photo-frame">
+            <img id="modal-image" src="" alt="Selected memory enlarged" />
+          </div>
+          <div class="from-tag" id="modal-from">From: Name</div>
+        </div>
+        <div class="modal-message-side">
+          <div class="letter-content">
+            <span class="letter-overline">JUST FOR YOU</span>
+            <h2 id="modal-title">From: Name</h2>
+            <p id="modal-full-message"></p>
+          </div>
+          <button class="back-btn" id="close-modal" type="button">← Back to memories</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="index.js"></script>
+  <script src="h-and-s.js"></script>
+</body>
+</html>
