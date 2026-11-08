@@ -3,12 +3,28 @@
  * Customize your four image paths and letters below.
  * No automatic rotation. No affection bar. Only one gallery Mochi per photo.
  */
+
 const photos = [
-  'photos/photo1.jpeg',       // Your first photo
-  'photos/photo2.jpeg', // Replace when photo2.jpg is uploaded
-  'photos/photo3.jpeg', // Replace when photo3.jpg is uploaded
-  'photos/photo4.jpg',  // Replace when photo4.jpg is uploaded
-];
+  'photos/photo1.jpeg',        // Photo 1
+  'photos/photo2.jpg',        // Photo 2
+  'photos/photo3.jpeg',        // Photo 3
+  'photos/photo4.jpeg',         // Photo 4
+  'photos/photo5.jpeg',        // Photo 5
+  'photos/photo6.jpg',    // Photo 6 placeholder
+  ];
+/* PRELOAD PHOTOS FOR FASTER GALLERY */
+const photoCache = photos.map((src) => {
+  const image = new Image();
+  image.src = src;
+
+  if (image.decode) {
+    image.decode().catch(() => {});
+  }
+
+  return image;
+});
+
+
 
 const messages = [
   { from: 'Aplateau plateau', preview: 'Lesgo Sheina! lesgo home! ', fullText: `“birthday mo?”
@@ -26,32 +42,63 @@ People who gets to be your friend are lucky. They can experience having an all-r
 May you healthily recover and finally obtain a good health buong buhay mo 🍀
 
 Rararara, smirnoff!!` },
-  { from: 'Kirang', preview: 'Birthday na ni eyna x2', fullText: `Ayun, birthday na niya. Finally, may bente anyos na rin satin! Dito na ako mag-oover sa message cuz yk can't do it in real life 🤗  You've been one of my closest friend since birth (i hope u get the reference 😝) u're one of the people na nakakaintindi sa takbo ng utak ko, with just one look may inside joke na agad. I admire how u can connect with everyone cuz u so flexible gurrrll lahat ata ng bagay nakaka-relate ka. I want to remind u lang na u can take things slow kahit na di masyadong nakiki-agree ang course mo. u always have us kapag need mo huminga, ma-distract for a while (bilyar yan of course) at kasamang dededma sa mga pending school works.
-
-+++ dadamayan ka namin mag-healthy living (minsan) para di ka ma-fomo sa mga kakainin namin mwehehehehe support kita dyan sa pag-prioritize mo ng health mo. pagaling ka para magawa na natin mga drawing natin. to more spontaneous ganaps and bilyar nang madaling araw! happy birthday, we luv uuu 🫶🏻` },
-  { from: 'Tempo Weaver', preview: 'HABADU SHEYNAMERLSS', fullText: `Happy birthday, sheina! thank you sa pag check sakin lately 🥹💗 kahit hindi na tayo nakakapagkita, i miss you. Miss ko na bond nating magkakaibigan ung kahit pagod sa paglalakad before tapos ending laging maple or rob lang din galaan HAHAHAHAHA. Mag 20 ka na, thank you for having you as my friend. Sana maging successful ka tapos wag mo me kalimutan and miss ko na pumunta at makipagchika sayo sa dorm niyo ni cai. Ung moments natin dati ng kwentuhan, rants groupings niyo etc. At mga reaksyon mong nakakatawa HAHAHAHAHA ung commute mo na makasama mo lang din kami kahit naic pa inuuwian mo. HBD HBD ULIT SANA MAGKITA NA US ULIT lovelotsss eynamerls 💗💗💗💗` },
-  { from: 'Sami', preview: 'birthday ni sheina purpol?! ', fullText: `happiest birthday, sheinamerls! 
-
-
+  { from: 'Sami', preview: 'Birthday ni sheina purpol?! ', fullText: `
+happiest birthday, sheinamerls! 
 
 thank you so so so much for every dorm stay, kwento, and everything. sobrang unexpected ng friendship natin yet here we are... and iʼm vv glad that we were able to go this far. 
 
-
-
 alam mo namang ikaw lang kasama ko sa hirap dahil parehas tayo ng dinadamdam na sakit 😜 sana before this year ends, you learn to take care of yourself. marami pa tayong kailangang gawin may it be planned or spontaneous. 
-
-
 
 i hope you enjoy your day, and know that you are a blessing to everyone. 
 
+i loaf u so much! 💘 
 
+` },
+  { from: 'Tempo Weaver', preview: 'HABADU SHEYNAMERLSS', fullText: `Happy birthday, sheina! thank you sa pag check sakin lately 🥹💗 kahit hindi na tayo nakakapagkita, i miss you. Miss ko na bond nating magkakaibigan ung kahit pagod sa paglalakad before tapos ending laging maple or rob lang din galaan HAHAHAHAHA. Mag 20 ka na, thank you for having you as my friend. Sana maging successful ka tapos wag mo me kalimutan and miss ko na pumunta at makipagchika sayo sa dorm niyo ni cai. Ung moments natin dati ng kwentuhan, rants groupings niyo etc. At mga reaksyon mong nakakatawa HAHAHAHAHA ung commute mo na makasama mo lang din kami kahit naic pa inuuwian mo. HBD HBD ULIT SANA MAGKITA NA US ULIT lovelotsss eynamerls 💗💗💗💗` },
+  { from: 'Kirang', preview: 'Birthday na ni eyna x2', fullText: `Ayun, birthday na niya. Finally, may bente anyos na rin satin! Dito na ako mag-oover sa message cuz yk can't do it in real life 🤗  You've been one of my closest friend since birth (i hope u get the reference 😝) u're one of the people na nakakaintindi sa takbo ng utak ko, with just one look may inside joke na agad. I admire how u can connect with everyone cuz u so flexible gurrrll lahat ata ng bagay nakaka-relate ka. I want to remind u lang na u can take things slow kahit na di masyadong nakiki-agree ang course mo. u always have us kapag need mo huminga, ma-distract for a while (bilyar yan of course) at kasamang dededma sa mga pending school works.
 
-i loaf u so much! 💘 ` }
++++ dadamayan ka namin mag-healthy living (minsan) para di ka ma-fomo sa mga kakainin namin mwehehehehe support kita dyan sa pag-prioritize mo ng health mo. pagaling ka para magawa na natin mga drawing natin. to more spontaneous ganaps and bilyar nang madaling araw! happy birthday, we luv uuu 🫶🏻` },
+
+  {
+    from: 'K',
+    preview: 'Hapi bidet, my wanderwol :)',
+    fullText: `hapi bente bidet eyna, yk the rest mali HAHAHAHAHHAHSHSHAHAHAHAHA
+
+I dont know what words to pull out to start this message, but God knows how thankful and grateful I am to be called ur friend. yk how proud I am sa iyo, and thats beyond true. Isa kang walastik, mah fren. my one of the most flexible friends kaya tanggapin mo na na tinatawag kitang geek most of the time ure my favorite geek out of all geeks, tho
+
+magulo man ang takbo ng buhay ko ngayon, isa ka sa mga hindi nagsasawang umintindi sa akin. I so love crying over everything, esp kapag ikaw na ang hinahagulgulan ko. judger ka, pero you never judge me, kahit nakita mo na ako at my very rock bottom. I am beyond and forever thankful that I have you to run to whenever everything feels like its against me
+
+u mah og mewmew eyna. we get along with a lot of things. magkadugtong nga ata pusod natin, naputol lang. Ive seen different versions of you the mahiyain at tahimik na version and now the loud one with that baddie energy and I love all of them
+
+niweys, magpagaling ka naman parang isang ubo ka na lang lagi tuwing binibisita ko kayo sa dorm niyo paano ko kayo malilibre ng sargo niyan? 
+
+I always wish for nothing but the best for u. Godspeed ⭐️`
+  },
+
+  {
+    from: 'Ibonieee',
+    preview: 'Uyy bente  ',
+    fullText: `HAPPY BIRTHDAY BEBIII!! ❤️
+
+Uyyy, bente na siya. Gudbai -teen naaa HAHAHAHAHA
+
+Happiest birthday sa isa sa pinakamalakas na taong kilala ko. Alam kong this year has been really rough on you, and ang dami mong pinagdaanan. I know na napapagod ka na rin, kaya I hope you take things slow, and don't pressure yourself too much. Allow yourself to breathe, rest, and be happy kahit sa mga simpleng moments lang. You deserve to enjoy life without having to worry about everything all the time.
+
+I hope you know how much I admire you kahit minsan masungit ka sa akin tas lagi pa akong iniirapan tskk HAHAHAHAHA, I'm always here for you, and that won't change. Isang tawag mo lang, matic andyan na ako. You don't have to go through everything alone, okay?
+
+Pagaling na po, bebiii. Andami nang gustong makipag-bilyar sa'yo. Ramdam ko na ikaw talaga MVP nila HAHAHAHAHAHA.
+
+Enjoy your dayyy, bebiii! Deserve mo mag-enjoy ngayon. I hope this new chapter brings you more reasons to smile, more peaceful days, and all the happiness you deserve.
+
+HAPPY 20TH BIRTHDAY!! ❤️`
+  }
 ];
+
+
 
 const $ = (id) => document.getElementById(id);
 const TOTAL = photos.length;
-const photoImages = ['miniLeftImg', 'miniCenterImg', 'miniRightImg', 'leftImg', 'centerImg', 'rightImg', 'modalImage'].map($);
+const photoImages = ['miniFarLeftImg', 'miniLeftImg', 'miniCenterImg', 'miniRightImg', 'miniFarRightImg', 'leftImg', 'centerImg', 'rightImg', 'modalImage'].map($);
 
 // Match every gallery frame to the real photo proportions.
 // Portrait photos get taller frames; landscape photos get wider frames.
@@ -82,14 +129,29 @@ let currentIndex = 0;
 let lastMochiPosition = -1;
 let previousFocus = null;
 
+
 const wrap = (index) => (index + TOTAL) % TOTAL;
+
 function setPhoto(img, index) {
   const wrapped = wrap(index);
+  const newSrc = photos[wrapped];
+
+  if (
+    img.dataset.photoIndex === String(wrapped) &&
+    img.getAttribute('src') === newSrc
+  ) {
+    return;
+  }
+
   img.dataset.photoIndex = String(wrapped);
-  img.src = photos[wrapped];
+  img.decoding = 'async';
+  img.src = newSrc;
 }
 
+
 function renderMini() {
+  setPhoto($('miniFarRightImg'), currentIndex + 2);
+  setPhoto($('miniFarLeftImg'), currentIndex - 2);
   setPhoto($('miniLeftImg'), currentIndex - 1);
   setPhoto($('miniCenterImg'), currentIndex);
   setPhoto($('miniRightImg'), currentIndex + 1);
@@ -125,11 +187,17 @@ function minimizeGallery() {
   renderMini();
   $('expandGallery').focus();
 }
+
 function changePhoto(delta) {
   currentIndex = wrap(currentIndex + delta);
-  renderMini();
-  renderExpanded();
+
+  if ($('expandedView').classList.contains('hidden')) {
+    renderMini();
+  } else {
+    renderExpanded();
+  }
 }
+
 
 $('expandGallery').addEventListener('click', showGallery);
 $('minimizeGallery').addEventListener('click', minimizeGallery);
