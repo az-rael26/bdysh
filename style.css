@@ -226,41 +226,244 @@ button:focus-visible { outline: 3px solid #BD7BA6; outline-offset: 3px; }
 }
 .gallery-side img { display: block; width: 100%; height: 100%; object-fit: contain; }
 
-/* The enlarged photo in the letter also keeps the original proportions. */
-.photo-frame {
-  width: min(100%, calc(430px * var(--photo-ratio, 1)));
-  height: auto;
-  max-height: 430px;
-  aspect-ratio: var(--photo-ratio, 1);
-}
-.photo-frame img { display: block; width: 100%; height: 100%; object-fit: contain; }
+/* BIGGER MINI GALLERY */
 
-@media (max-width: 700px) {
-  .gallery-frame { display: flex; gap: 8px; }
-  .gallery-side { height: auto; width: min(75px, calc(78px * var(--photo-ratio, 1))); }
-  .gallery-center { height: auto; }
-  .gallery-center[data-orientation="portrait"] { width: min(245px, 51vw); }
-  .gallery-center[data-orientation="landscape"] { width: min(330px, 62vw); }
-  .gallery-center[data-orientation="square"] { width: min(260px, 55vw); }
-  .photo-frame {
-    width: min(100%, calc(340px * var(--photo-ratio, 1)));
-    max-height: 340px;
-    aspect-ratio: var(--photo-ratio, 1);
-  }
+.mini-carousel {
+  width: min(420px, 94vw);
+  height: 210px;
+  grid-template-columns: 100px minmax(0, 1fr) 100px;
+  gap: 14px;
+  align-items: center;
 }
-@media (max-width: 440px) {
-  .mini-carousel { display: flex; height: 156px; padding: 8px; gap: 10px; }
+
+.mini-center {
+  height: 170px;
+}
+
+.mini-left,
+.mini-right {
+  width: 100%;
+  height: 135px;
+}
+
+.mini-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* REMOVE MINIMIZE GALLERY BUTTON */
+
+.minimize-btn {
+  display: none !important;
+}
+
+/* MOBILE ADJUSTMENT */
+
+@media (max-width: 480px) {
+  .mini-carousel {
+    width: 94vw;
+    grid-template-columns: 65px minmax(0, 1fr) 65px;
+    gap: 10px;
+  }
+
   .mini-center {
-    width: min(171px, calc(108px * var(--photo-ratio, 1)));
-    height: auto;
+    height: 150px;
   }
-  .mini-side {
-    width: min(66px, calc(74px * var(--photo-ratio, 1)));
-    height: auto;
+
+  .mini-left,
+  .mini-right {
+    height: 115px;
   }
-  .gallery-frame { gap: 7px; }
-  .gallery-center[data-orientation="portrait"] { width: min(215px, 50vw); }
-  .gallery-center[data-orientation="landscape"] { width: min(300px, 59vw); }
-  .gallery-center[data-orientation="square"] { width: min(245px, 53vw); }
-  .gallery-side { width: min(56px, calc(60px * var(--photo-ratio, 1))); height: auto; }
 }
+
+/* FIX MINI GALLERY SIZE */
+
+.mini-carousel {
+  display: flex !important;
+  width: min(420px, 96vw) !important;
+  height: 210px !important;
+  padding: 10px !important;
+  gap: 10px !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.mini-carousel .mini-card {
+  flex: 0 0 auto !important;
+  min-width: 0 !important;
+  aspect-ratio: auto !important;
+}
+
+/* Center photo — portrait */
+.mini-carousel .mini-center {
+  width: 135px !important;
+  height: 180px !important;
+}
+
+/* Side photos — portrait */
+.mini-carousel .mini-side {
+  width: 94px !important;
+  height: 137px !important;
+}
+
+/* Landscape photos */
+.mini-carousel .mini-center[data-orientation="landscape"] {
+  width: 176px !important;
+  height: 125px !important;
+}
+
+.mini-carousel .mini-side[data-orientation="landscape"] {
+  width: 94px !important;
+  height: 76px !important;
+}
+
+/* Square photos */
+.mini-carousel .mini-center[data-orientation="square"] {
+  width: 157px !important;
+  height: 157px !important;
+}
+
+.mini-carousel .mini-side[data-orientation="square"] {
+  width: 94px !important;
+  height: 94px !important;
+}
+
+.mini-carousel .mini-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* Hide minimize button */
+.minimize-btn {
+  display: none !important;
+}
+
+/* Phone screens */
+@media (max-width: 480px) {
+  .mini-carousel {
+    width: min(100%, 360px) !important;
+    height: 190px !important;
+    padding: 6px !important;
+    gap: 6px !important;
+  }
+
+  .mini-carousel .mini-center {
+    width: 116px !important;
+    height: 158px !important;
+  }
+
+  .mini-carousel .mini-side {
+    width: 72px !important;
+    height: 109px !important;
+  }
+
+  .mini-carousel .mini-center[data-orientation="landscape"] {
+    width: 150px !important;
+    height: 105px !important;
+  }
+
+  .mini-carousel .mini-side[data-orientation="landscape"] {
+    width: 72px !important;
+    height: 58px !important;
+  }
+
+  .mini-carousel .mini-center[data-orientation="square"] {
+    width: 134px !important;
+    height: 134px !important;
+  }
+
+  .mini-carousel .mini-side[data-orientation="square"] {
+    width: 72px !important;
+    height: 72px !important;
+  }
+}
+
+
+/* === MOCHI FIVE-PREVIEW FINAL LAYOUT START === */
+/* Applied after older sizing rules. Five previews are always visible. */
+.mini-carousel {
+  display: grid !important;
+  width: min(450px, 96vw) !important;
+  height: 210px !important;
+  grid-template-columns: 52px 75px 116px 75px 52px !important;
+  gap: 10px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 12px 8px !important;
+  box-sizing: border-box !important;
+}
+.mini-carousel .mini-card {
+  display: block !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  flex: none !important;
+  aspect-ratio: auto !important;
+  overflow: hidden;
+  border-radius: 11px;
+}
+.mini-carousel .mini-card.mini-center,
+.mini-carousel .mini-card.mini-center[data-orientation] {
+  width: 100% !important;
+  height: 170px !important;
+  border-radius: 14px;
+  transform: none !important;
+}
+.mini-carousel .mini-card.mini-side,
+.mini-carousel .mini-card.mini-side[data-orientation] {
+  width: 100% !important;
+  height: 128px !important;
+}
+.mini-carousel .mini-card.mini-outer,
+.mini-carousel .mini-card.mini-outer[data-orientation] {
+  width: 100% !important;
+  height: 97px !important;
+  opacity: .83;
+}
+.mini-carousel .mini-far-left { transform: perspective(650px) rotateY(24deg); }
+.mini-carousel .mini-far-right { transform: perspective(650px) rotateY(-24deg); }
+.mini-carousel .mini-card img {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  object-position: center !important;
+}
+/* Respect landscape and square photos without chopping them. */
+.mini-carousel .mini-card.mini-center[data-orientation="landscape"] { height: 96px !important; }
+.mini-carousel .mini-card.mini-side[data-orientation="landscape"] { height: 72px !important; }
+.mini-carousel .mini-card.mini-outer[data-orientation="landscape"] { height: 51px !important; }
+.mini-carousel .mini-card.mini-center[data-orientation="square"] { height: 116px !important; }
+.mini-carousel .mini-card.mini-side[data-orientation="square"] { height: 75px !important; }
+.mini-carousel .mini-card.mini-outer[data-orientation="square"] { height: 52px !important; }
+.mini-carousel .mini-label { display: none !important; }
+/* Restore the button underneath the center photo in the expanded gallery. */
+.gallery-center .minimize-btn, .minimize-btn {
+  display: block !important;
+  visibility: visible !important;
+}
+@media (max-width: 480px) {
+  .mini-carousel {
+    width: min(96vw, 360px) !important;
+    height: 170px !important;
+    grid-template-columns: 34px 48px 94px 48px 34px !important;
+    gap: 6px !important;
+    padding: 8px 5px !important;
+  }
+  .mini-carousel .mini-card.mini-center,
+  .mini-carousel .mini-card.mini-center[data-orientation] { height: 146px !important; }
+  .mini-carousel .mini-card.mini-side,
+  .mini-carousel .mini-card.mini-side[data-orientation] { height: 105px !important; }
+  .mini-carousel .mini-card.mini-outer,
+  .mini-carousel .mini-card.mini-outer[data-orientation] { height: 78px !important; }
+  .mini-carousel .mini-card.mini-center[data-orientation="landscape"] { height: 73px !important; }
+  .mini-carousel .mini-card.mini-side[data-orientation="landscape"] { height: 49px !important; }
+  .mini-carousel .mini-card.mini-outer[data-orientation="landscape"] { height: 35px !important; }
+  .mini-carousel .mini-card.mini-center[data-orientation="square"] { height: 94px !important; }
+  .mini-carousel .mini-card.mini-side[data-orientation="square"] { height: 48px !important; }
+  .mini-carousel .mini-card.mini-outer[data-orientation="square"] { height: 34px !important; }
+}
+/* === MOCHI FIVE-PREVIEW FINAL LAYOUT END === */
